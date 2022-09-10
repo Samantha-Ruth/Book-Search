@@ -24,7 +24,7 @@ const resolvers = {
             // const token = signToken(user);
       
             // return { token, user };
-            return User;
+            return user;
           },
 
           // user login
