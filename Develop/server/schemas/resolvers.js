@@ -15,12 +15,16 @@ const resolvers = {
         },
     },
     Mutation: {
-        // add User
+        // add User. Mongoose User Model creates new user with
+        // whatever is passed in as 'args'
         createUser: async (parent, args) => {
             const user = await User.create(args);
-            const token = signToken(user);
+            console.log(user);
+
+            // const token = signToken(user);
       
-            return { token, user };
+            // return { token, user };
+            return User;
           },
 
           // user login
