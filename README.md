@@ -18,3 +18,7 @@ The link to the deployed project is here: https://github.com/Samantha-Ruth/Book-
 
 The url of the Git repository is here: https://github.com/randiferous/group-covid-project
 
+## Questions
+
+If you have any questions about the repo, open an issue or you can find more of my work at (https://gitHub.com/Samantha-Ruth).
+
