@@ -15,5 +15,4 @@ query me {
             link
          }
       }
-    }
 `;
