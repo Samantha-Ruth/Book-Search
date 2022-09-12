@@ -5,8 +5,11 @@ import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries';
 
+// Need to replace the utils/API calls
 import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
+
+// Do we need to do anything with local storage? 
 import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
@@ -17,6 +20,7 @@ const SavedBooks = () => {
   //optional chaining negates the need to check if an object exists before accessing it's properties
   // if data exists, store in "me" If data is undefined, save an empty object to the "me" component.
   const me = data?.me || {};
+  console.log(me)
 
 
   // use this to determine if `useEffect()` hook needs to run again
