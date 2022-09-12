@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
+// importing useQuery hook from the Apollo Client
+import { useQuery } from '@apollo/client'
+import { QUERY_ME } from '../utils/queries';
+
 import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
+  //This will set useState - do we need a state hook here? 
   const [userData, setUserData] = useState({});
+  // Use query hook to make query request. Loading indicates request isn't done; info is stored in data property; data.me
+  const { loading, data } = useQuery(QUERY_ME);
+  //optional chaining negates the need to check if an object exists before accessing it's properties
+  // if data exists, store in "me" If data is undefined, save an empty object to the "me" component.
+  const me = data?.me || {};
+
 
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
