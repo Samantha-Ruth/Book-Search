@@ -3,10 +3,10 @@ import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap
 
 // importing useQuery hook from the Apollo Client
 import { useQuery } from '@apollo/client'
-import { QUERY_ME } from '../utils/queries';
+import { GET_ME } from '../utils/queries';
 
 // Need to replace the utils/API calls
-import { getMe, deleteBook } from '../utils/API';
+import { deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
 
 // Do we need to do anything with local storage? 
@@ -16,7 +16,7 @@ const SavedBooks = () => {
   //This will set useState - do we need a state hook here? 
   const [userData, setUserData] = useState({});
   // Use query hook to make query request. Loading indicates request isn't done; info is stored in data property; data.me
-  const { loading, data } = useQuery(QUERY_ME);
+  const { loading, data } = useQuery(GET_ME);
   //optional chaining negates the need to check if an object exists before accessing it's properties
   // if data exists, store in "me" If data is undefined, save an empty object to the "me" component.
   const me = data?.me || {};
@@ -28,6 +28,7 @@ const SavedBooks = () => {
 
   useEffect(() => {
     const getUserData = async () => {
+
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -35,7 +36,7 @@ const SavedBooks = () => {
           return false;
         }
 
-        const response = await getMe(token);
+        // const response = await getMe(token);
 
         if (!response.ok) {
           throw new Error('something went wrong!');
