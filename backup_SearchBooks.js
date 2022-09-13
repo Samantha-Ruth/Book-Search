@@ -13,8 +13,10 @@ const SearchBooks = () => {
   const [searchedBooks, setSearchedBooks] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
+
   // create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
+
   // save book with a useMutation(SAVE_BOOK)
   const [saveBook] = useMutation(SAVE_BOOK);
 
@@ -24,6 +26,7 @@ const SearchBooks = () => {
     return () => saveBookIds(savedBookIds);
   });
 
+  // THIS SHALL STAY THE SAME!!! :) 
   // create method to search for books and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -69,14 +72,14 @@ const SearchBooks = () => {
     console.log(bookToSave);
     try {
       await saveBook({
-       // set variables 
-        variables: { bookData: bookToSave },
+       // Need to set variables 
+        // variables: { book: bookToSave },
+        variables: { bookToSave },
         // update cache:
         update: cache => {
         // read what's currently in the cache:
-        const  { me }  = cache.readQuery({ query: GET_ME_BASIC });
+        const { me } = cache.readQuery({ query: GET_ME_BASIC });
         cache.writeQuery({
-          // prepend bookToSave to the front of the Array
           query: GET_ME_BASIC,
           data: 
           { me: { 
