@@ -22,8 +22,12 @@ export const GET_ME_BASIC = gql`
     me {
       username
       savedBooks {
+        authors
         bookId
+        description
         title
+        image
+        link
       }
     }
   }

@@ -69,7 +69,7 @@ const SearchBooks = () => {
     console.log(bookToSave);
     try {
       await saveBook({
-       // set variables 
+       // Need to set variables 
         variables: { bookData: bookToSave },
         // update cache:
         update: cache => {
