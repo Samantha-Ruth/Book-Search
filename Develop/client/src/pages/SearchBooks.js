@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { SAVE_BOOK } from '../utils/mutations';
-import { GET_ME } from '../utils/queries'
+import { GET_ME_BASIC } from '../utils/queries'
 
 import Auth from '../utils/auth';
 import { searchGoogleBooks } from '../utils/API';
@@ -54,6 +54,7 @@ const SearchBooks = () => {
       }));
 
       setSearchedBooks(bookData);
+      console.log(bookData);
       setSearchInput('');
     } catch (err) {
       console.error(err);
@@ -69,7 +70,7 @@ const SearchBooks = () => {
     if (!token) {
       return false;
     }
-
+    console.log(bookToSave);
     try {
       await saveBook({
        // Need to set variables 
@@ -77,9 +78,9 @@ const SearchBooks = () => {
         // update cache:
         update: cache => {
         // read what's currently in the cache:
-        const { me } = cache.readQuery({ query: GET_ME });
+        const { me } = cache.readQuery({ query: GET_ME_BASIC });
         cache.writeQuery({
-          query: GET_ME,
+          query: GET_ME_BASIC,
           data: 
           { me: { 
             ...me, 
@@ -89,6 +90,7 @@ const SearchBooks = () => {
         })
         }
        });
+       
 
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([

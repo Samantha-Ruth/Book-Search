@@ -7,7 +7,6 @@ query me {
          email
          bookCount
          savedBooks {
-            _id
             bookId
             authors
             description
@@ -23,7 +22,6 @@ export const GET_ME_BASIC = gql`
     me {
       username
       savedBooks {
-        _id
         bookId
         title
       }

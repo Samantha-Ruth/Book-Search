@@ -55,12 +55,25 @@ const resolvers = {
     },
 
     // saveBook
-    saveBook: async (parent, book, context) => {
+    // saveBook: async (parent, book, context) => {
+    //   if (context.user) {
+    //     const updatedUser = await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $addToSet: { savedBooks: book }},
+    //       {new: true, runValidators: true}
+    //     );
+    //     console.log(updatedUser);
+    //     return updatedUser;
+    //   }
+    //   throw new AuthenticationError("You need to be logged in.");
+    // },
+
+    saveBook: async (parent, { bookData }, context) => {
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
+        const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedBooks: book }},
-          {new: true, runValidators: true}
+          { $push: { savedBooks: bookData } },
+          { new: true }
         );
         console.log(updatedUser);
         return updatedUser;
