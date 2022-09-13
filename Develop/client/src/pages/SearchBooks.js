@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
-import { useQuery } from '@apollo/client';
 import { SAVE_BOOK } from '../utils/mutations';
 import { GET_ME } from '../utils/queries'
 
@@ -21,7 +20,6 @@ const SearchBooks = () => {
   // save book with a useMutation(SAVE_BOOK)
   const [saveBook] = useMutation(SAVE_BOOK);
   const loggedIn = Auth.loggedIn();
-  const { data: userData } = useQuery(GET_ME);
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup

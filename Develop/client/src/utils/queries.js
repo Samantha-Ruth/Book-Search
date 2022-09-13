@@ -7,6 +7,7 @@ query me {
          email
          bookCount
          savedBooks {
+            _id
             bookId
             authors
             description
@@ -15,4 +16,17 @@ query me {
             link
          }
       }
+`;
+
+export const GET_ME_BASIC = gql`
+  {
+    me {
+      username
+      savedBooks {
+        _id
+        bookId
+        title
+      }
+    }
+  }
 `;
