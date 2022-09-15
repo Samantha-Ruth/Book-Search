@@ -54,20 +54,6 @@ const resolvers = {
       return { token, user };
     },
 
-    // saveBook
-    // saveBook: async (parent, book, context) => {
-    //   if (context.user) {
-    //     const updatedUser = await User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $addToSet: { savedBooks: book }},
-    //       {new: true, runValidators: true}
-    //     );
-    //     console.log(updatedUser);
-    //     return updatedUser;
-    //   }
-    //   throw new AuthenticationError("You need to be logged in.");
-    // },
-
     saveBook: async (parent, { bookData }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(

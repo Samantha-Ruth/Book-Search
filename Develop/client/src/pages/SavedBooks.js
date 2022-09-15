@@ -22,36 +22,6 @@ const SavedBooks = () => {
   const userData = data?.me || {};
   console.log(userData)
 
-// NEED USE EFFECT? 
-  // // use this to determine if `useEffect()` hook needs to run again
-  // const userDataLength = Object.keys(userData).length;
-
-  // useEffect(() => {
-  //   const getUserData = async () => {
-
-  //     try {
-  //       const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-  //       if (!token) {
-  //         return false;
-  //       }
-
-  //       // const response = await getMe(token);
-
-  //       if (!response.ok) {
-  //         throw new Error('something went wrong!');
-  //       }
-
-  //       const user = await response.json();
-  //       setUserData(user);
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
-
-  //   getUserData();
-  // }, [userDataLength]);
-
   if(!userData?.username) {
     return (
       <h3>
@@ -71,24 +41,28 @@ const SavedBooks = () => {
     try {
       await deleteBook({
         variables: { bookId: bookId },
-        update: cache => {
-          const data = cache.readQuery({ query: GET_ME_BASIC });
-          const userCache = data.me;
-          const savedCache = userCache.savedBooks;
-          const updatedCache = savedCache.filter((book) => book.bookId !== bookId );
-          data.me.savedBooks = updatedCache;
-          cache.writeQuery({
-            query: GET_ME_BASIC,
-            data: {
-              data: {
-                ...data.me.savedBooks
-              }
-            } 
-          })
-        }
-      });
+        // update: cache => {
+        //   const data = cache.readQuery({ query: GET_ME_BASIC });
+        //   // savedCache pulls all saved books out of UserData
+        //   const savedCache = data.me.savedBooks;
+        //   // updatedCache is list of books without the id of the one we want to delete
+        //   const updatedCache = savedCache.filter((book) => book.bookId !== bookId );
+        //   // HOW DO I UPDATE data.me.savedBooks with updatedCache? 
+
+        //   // data.me.savedBooks = updatedCache;
+        //   cache.writeQuery({
+        //     // add updatedCache to data?
+        //     query: GET_ME_BASIC,
+        //     data: {
+        //       data: {...data.me.savedBooks, ...updatedCache}
+        //     }
+        //   })
+        // }
+        })
+
       // upon success, remove book's id from localStorage
-      removeBookId(bookId);
+      removeBookId(bookId)
+      window.location.reload(true);
     } catch (err) {
       console.error(err);
     }

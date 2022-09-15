@@ -55,8 +55,13 @@ mutation deleteBook( $bookId: String!){
     username
     bookCount
     savedBooks {
+      _id
       authors
+      bookId
+      description
+      image
       title
+      link
     }
   }
 }
