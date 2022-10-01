@@ -21,9 +21,9 @@ The user also has ability to log into the app.  When they do, they can save book
 The application helped me to learn how the MERN stack works with GraphQL.  It helped me learn how to build typeDef files, and resolvers composed of queries and mutations.  I practiced using the Apollo Studio Explorer to verify queries and mutations worked as expected, and transferred all previous api routes and controllers over to queries and mutations on the backside, as well as building the Apollo Server.  Once this was complete, I worked on refactoring the client side. 
 
 ## Links
-The link to the deployed project is here: https://github.com/Samantha-Ruth/Book-Search/
+The link to the deployed project is here: https://warm-bayou-44271.herokuapp.com
 
-The url of the Git repository is here: https://github.com/randiferous/group-covid-project
+The url of the Git repository is here: https://github.com/Samantha-Ruth/Book-Search
 
 ## Questions
 
